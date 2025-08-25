@@ -5,19 +5,21 @@ import pickle
 generateAI()
 ai=pickle.load(open('model.pkl','rb'))
 
-app=Flask(__name__)
+
+app=Flask(_name_)
+
 @app.route('/')
 def home():
     return('AI Model Server is running')
 
-@app.route(('/predict',methods=['GET']))
+@app.route('/predict',methods=['GET'])
 def predict():
-    temp = request.args.get('temp')
+    temp=request.args.get('temp')
     temp=float(temp)
     data=[[temp]]
     result=ai.predict(data)
     result=result[0]
-    return(result)
+    return (result)
 
-if(__name__="__main__"):
+if(_name=="main_"):
     app.run(host='0.0.0.0',port=5000,debug=True)
